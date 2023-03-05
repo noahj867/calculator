@@ -1,0 +1,94 @@
+@font-face {
+    font-family: "Roboto";
+    src:url(https://fonts.googleapis.com/css?family=Open+Sans&display=swap);
+}
+
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap'); */
+
+.parent-container {
+    box-sizing: border-box;
+    width:fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 8rem auto;
+    padding: 20px;
+    border-style: solid;
+    border-color: rgb(53, 54, 53);
+    border-radius: 6px;
+}
+
+.buttons {
+    text-align: center;
+    font-family: Roboto;
+    display: grid;
+    height: 400px;
+    width: 400px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+    border-radius: 4px;
+    font-size: 30px;
+}
+
+.number {
+    font-size: 20px;
+}
+
+.operator {
+    font-size: 20px;
+}
+
+#clear {
+    font-size: 20px;
+}
+
+.number:hover {
+    box-shadow: 0px 8px 10px 0px;
+    transition-duration: .4s;
+}
+
+.operator:hover {
+    box-shadow: 0px 8px 10px 0px;
+    transition-duration: .4s;
+}
+
+.operator:active {
+    background-color: rgba(56, 121, 170, 0.432);
+}
+.operator:focus {
+    background-color: rgba(56, 121, 170, 0.432);
+}
+
+#clear {
+    grid-column: 1 / 4;
+    
+}
+
+#clear:hover {
+    box-shadow: 0px 8px 10px 0px;
+    transition-duration: .4s;
+    
+}
+
+#zero {
+    grid-column: 1 / 4;
+}
+
+#display {
+    width: 300px;
+    height: 40px;
+    border-color: black;
+    border-width: 1px;
+    font-size: 25px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+

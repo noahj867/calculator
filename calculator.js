@@ -7,67 +7,57 @@ const divide = (a, b) => a / b
 
 const multiply = (a, b) => a * b
 
-// add operator or number to calculator's input field
-let display = document.getElementById("display");
-const inputs = document.querySelectorAll(".input");
-inputs.forEach(input => input.addEventListener("click", () => {
-    display.value += input.innerHTML; 
+let firstOperand = ""
+let secondOperand = ""
+let currentOperator = ""
+
+let currentDisplay = document.getElementById("display");
+const numbers = document.querySelectorAll(".number");
+numbers.forEach(number => number.addEventListener("click", () => {
+    if (secondOperand === "" && currentOperator != "" || currentDisplay.value == 0) {
+        firstOperand = Number(currentDisplay.value);
+        currentDisplay.value = "";
+    };
+    currentDisplay.value += number.innerHTML;
+    if (currentOperator != "") secondOperand = Number(currentDisplay.value);
+}));
+
+const operators = document.querySelectorAll(".operator");
+operators.forEach(operator => operator.addEventListener("click", () => {
+    if (currentOperator != "" && secondOperand === "") {
+        currentOperator = operator.innerHTML;
+    };
+    if (currentOperator != "" && secondOperand != "") {
+        currentDisplay.value = roundResult(operate(currentOperator, firstOperand, secondOperand));
+        secondOperand = "";
+    };
+    currentOperator = operator.innerHTML;
+    console.log(currentOperator);
 }
 ));
 
-// evaluate function when user clicks "=" button 
-let operate = document.getElementById("operate");
-operate.addEventListener("click", evaluate());
-function evaluate () {
-    display.value = eval(display.value)
-    return display.value
+function roundResult (number) {
+    return Math.round(number * 1000)/1000
 };
 
-// clear calc
+function operate(operator, a, b) {
+    if (operator === "+") {
+        return add(a, b)
+    } else if (operator === "-") {
+        return subtract(a,b)
+    } else if (operator === "*") {
+        return multiply(a,b)
+    } else if (operator === "/") {
+        return divide(a,b)
+    };
+};
+
+function reset() {
+    currentDisplay.value = "" 
+    firstOperand = ""
+    secondOperand = ""
+    currentOperator = ""
+};
+
 let clear = document.getElementById("clear");
-clear.addEventListener("click", reset());
-
-const reset = () => display.value = ""
-
-
-
-
-// when an operator is pressed save display box and save operator
-// then when you press  
-
-
-// when an operator is pressed save display box and save operator
-// then when you press  
-
-// // // operators for calculator
-// const add = (a, b) => a + b
-
-// const subtract = (a, b) => a - b
-
-// const divide = (a, b) => a / b 
-
-// const multiply = (a, b) => a * b
-
-// function evaluate () {
-//     input.value = eval(input.value)
-//     return input.value
-// };
-
-// // add operator or number to calculator's input field
-// let input = document.getElementById("input");
-// const numbers = document.querySelectorAll(".number");
-// numbers.forEach(number => number.addEventListener("click", () => {
-//     input.value += number.innerHTML; 
-// }
-// ));
-
-// const operators = document.querySelectorAll(".operator");
-// operators.forEach(operator => operator.addEventListener("click", () => {
-//     input.value += operator.innerHTML; 
-// }
-// ));
-
-// // evaluate function when user clicks "=" button 
-// let operate = document.getElementById("operate");
-// operate.addEventListener("click", () => {
-//     evaluate(input.value)
+clear.addEventListener("click", reset);
